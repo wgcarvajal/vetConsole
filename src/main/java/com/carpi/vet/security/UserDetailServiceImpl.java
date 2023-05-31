@@ -17,12 +17,9 @@ public class UserDetailServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         UserVet userVet = userVetPort.findByEmail(email);
-        System.out.println("wilson loadUserByUsername" + email);
         if (userVet != null) {
-            System.out.println("wilson loadUserByUsername userVet:" + userVet.getEmail());
             return new UserDetailsImpl(userVet);
         } else {
-            System.out.println("wilson loadUserByUsername userVet: ERROR");
             throw new UsernameNotFoundException("the user with email "+ email+" does not exist");
         }
     }
