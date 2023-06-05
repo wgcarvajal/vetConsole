@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PersonRepository extends JpaRepository<PersonData,Long> {
+public interface PersonRepository extends JpaRepository<PersonData, Long> {
 
     @Query(value = "SELECT p FROM PersonData p WHERE p.user.email = :email")
-    public PersonData findByEmail(String email);
+    PersonData findByEmail(String email);
 
 }

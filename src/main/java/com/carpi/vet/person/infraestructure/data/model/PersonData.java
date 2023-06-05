@@ -1,6 +1,5 @@
 package com.carpi.vet.person.infraestructure.data.model;
 
-import com.carpi.vet.person.domain.model.IdentificationType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

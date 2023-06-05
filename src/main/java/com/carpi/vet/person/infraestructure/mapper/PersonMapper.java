@@ -1,9 +1,6 @@
 package com.carpi.vet.person.infraestructure.mapper;
 
-import com.carpi.vet.person.domain.model.IdentificationType;
 import com.carpi.vet.person.domain.model.Person;
-import com.carpi.vet.person.domain.model.User_;
-import com.carpi.vet.person.infraestructure.data.model.IdentificationTypeData;
 import com.carpi.vet.person.infraestructure.data.model.PersonData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

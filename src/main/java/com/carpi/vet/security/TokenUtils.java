@@ -19,7 +19,7 @@ public class TokenUtils {
     //private final static Long ACCESS_TOKEN_VALIDITY_SECONDS = 120L;
 
     public static String createToken(String name, String email) {
-        Long expirationTime = ACCESS_TOKEN_VALIDITY_SECONDS * 1_000;
+        long expirationTime = ACCESS_TOKEN_VALIDITY_SECONDS * 1_000;
         Date expirationDate = new Date(System.currentTimeMillis() + expirationTime);
 
         Map<String, Object> extra = new HashMap<>();

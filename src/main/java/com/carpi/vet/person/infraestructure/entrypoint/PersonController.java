@@ -2,7 +2,6 @@ package com.carpi.vet.person.infraestructure.entrypoint;
 
 import com.carpi.vet.person.domain.model.IdentificationType;
 import com.carpi.vet.person.domain.usecase.GetIdentificationTypesUseCase;
-import com.carpi.vet.species.domain.model.Species;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
