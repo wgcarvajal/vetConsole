@@ -1,4 +1,4 @@
-package com.carpi.vet.user.domain.model;
+package com.carpi.vet.person.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class UserVet {
+public class User_ {
     private Long id;
     private String email;
     private String password;
-    private String name;
 }

@@ -40,9 +40,9 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         {
             try {
                 response.setStatus(HttpStatus.FORBIDDEN.value());
-                response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+                response.setContentType(MediaType.TEXT_PLAIN_VALUE);
                 PrintWriter writer = response.getWriter();
-                writer.write("{\"error\": \""+e.getMessage()+"\"}");
+                writer.write(e.getMessage());
                 writer.flush();
             } catch (IOException ex) {
             }

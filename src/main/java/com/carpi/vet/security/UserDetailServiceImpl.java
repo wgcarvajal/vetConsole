@@ -1,7 +1,7 @@
 package com.carpi.vet.security;
 
-import com.carpi.vet.user.domain.model.UserVet;
-import com.carpi.vet.user.domain.port.UserVetPort;
+import com.carpi.vet.person.domain.model.Person;
+import com.carpi.vet.person.domain.port.PersonPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,13 +12,13 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserDetailServiceImpl implements UserDetailsService {
 
-    private final UserVetPort userVetPort;
+    private final PersonPort personPort;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        UserVet userVet = userVetPort.findByEmail(email);
-        if (userVet != null) {
-            return new UserDetailsImpl(userVet);
+        Person person = personPort.getByEmail(email);
+        if (person != null) {
+            return new UserDetailsImpl(person);
         } else {
             throw new UsernameNotFoundException("the user with email "+ email+" does not exist");
         }

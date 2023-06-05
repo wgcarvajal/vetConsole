@@ -1,4 +1,4 @@
-package com.carpi.vet.user.infraestructure.data.model;
+package com.carpi.vet.person.infraestructure.data.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,14 +10,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class UserVetData {
+public class UserData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "email", length = 250, nullable = false)
+    @Column(name = "email_user", length = 250, nullable = false, unique = true)
     private String email;
-    @Column(name = "password", length = 72, nullable = false)
+    @Column(name = "password_user", length = 72, nullable = false)
     private String password;
-    @Column(name = "name", length = 150, nullable = false)
-    private String name;
 }

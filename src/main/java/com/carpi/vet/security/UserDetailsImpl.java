@@ -1,6 +1,6 @@
 package com.carpi.vet.security;
 
-import com.carpi.vet.user.domain.model.UserVet;
+import com.carpi.vet.person.domain.model.Person;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,7 +11,7 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public class UserDetailsImpl implements UserDetails {
 
-    private final UserVet userVet;
+    private final Person person;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.emptyList();
@@ -19,12 +19,12 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getPassword() {
-        return userVet.getPassword();
+        return person.getUser().getPassword();
     }
 
     @Override
     public String getUsername() {
-        return userVet.getEmail();
+        return person.getUser().getEmail();
     }
 
     @Override
@@ -49,6 +49,6 @@ public class UserDetailsImpl implements UserDetails {
 
     public String getName()
     {
-        return userVet.getName();
+        return person.getName() + person.getLastName();
     }
 }

@@ -29,7 +29,8 @@ public class WebSecurityConfig {
 
         return http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers( "/api/v1/species/*", "/api/v1/user/*").permitAll().anyRequest().authenticated()).
+                        auth.//requestMatchers( "/api/v1/**").permitAll()
+                                anyRequest().authenticated()).
 
                 sessionManagement((sessionManagement) ->
                         sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

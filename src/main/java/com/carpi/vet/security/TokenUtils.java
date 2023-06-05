@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class TokenUtils {
 
-    private final static String ACCESS_TOKEN_SECRET = "6eeb6cd15e4f4a398e53deed188e0d88cbf140e18b3ca90fe5a528fd0d9c8a9b";
+    private final static String ACCESS_TOKEN_SECRET = "";
     private final static Long ACCESS_TOKEN_VALIDITY_SECONDS = 2_592_000L;
 
     //private final static Long ACCESS_TOKEN_VALIDITY_SECONDS = 120L;
