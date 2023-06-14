@@ -1,4 +1,4 @@
-package com.carpi.vet.security.model;
+package com.carpi.vet.security.infraestructure.entrypoint.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

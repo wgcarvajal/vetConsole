@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -29,7 +30,13 @@ public class SpeciesPortImpl implements SpeciesPort {
 
     @Override
     public Species findById(Integer id) {
-        return mapper.toSpecies(repository.findById(id).get());
+
+        Optional<SpeciesData> optional = repository.findById(id);
+        if(optional.isPresent())
+        {
+            return mapper.toSpecies(optional.get());
+        }
+        return new Species();
     }
 
     @Override

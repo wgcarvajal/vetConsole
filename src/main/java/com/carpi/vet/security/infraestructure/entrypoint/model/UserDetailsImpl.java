@@ -1,4 +1,4 @@
-package com.carpi.vet.security;
+package com.carpi.vet.security.infraestructure.entrypoint.model;
 
 import com.carpi.vet.person.domain.model.Person;
 import lombok.RequiredArgsConstructor;
@@ -49,6 +49,8 @@ public class UserDetailsImpl implements UserDetails {
 
     public String getName()
     {
-        return person.getName() + person.getLastName();
+        return person.getName() + " "+ person.getLastName();
     }
+
+    public String getUserType(){return person.getUser().getUserType().getName();}
 }

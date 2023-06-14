@@ -1,7 +1,8 @@
-package com.carpi.vet.security;
+package com.carpi.vet.security.infraestructure.entrypoint.filters;
 
-import com.carpi.vet.security.model.LoginResponse;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.carpi.vet.security.infraestructure.entrypoint.model.LoginResponse;
+import com.carpi.vet.security.infraestructure.entrypoint.model.UserDetailsImpl;
+import com.carpi.vet.security.utils.TokenUtils;
 import com.google.gson.Gson;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -9,35 +10,23 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collections;
 
-public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+public abstract class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request,
-                                                HttpServletResponse response){
-
-        AuthCredentials authCredentials = new AuthCredentials();
+                                                HttpServletResponse response) {
         try {
-            authCredentials = new ObjectMapper().readValue(request.getReader(), AuthCredentials.class);
-        } catch (IOException e) {
-        }
-
-        UsernamePasswordAuthenticationToken userNamePAT = new UsernamePasswordAuthenticationToken(
-                authCredentials.getEmail(),
-                authCredentials.getPassword(),
-                Collections.emptyList());
-        try {
-            return getAuthenticationManager().authenticate(userNamePAT);
-        }catch (AuthenticationException e)
-        {
+            System.out.println("Authenticate");
+            return getAuthenticationManager().authenticate(getAuthentication(request));
+        } catch (AuthenticationException e) {
+            System.out.println("error:"+e.getMessage());
             try {
                 response.setStatus(HttpStatus.FORBIDDEN.value());
                 response.setContentType(MediaType.TEXT_PLAIN_VALUE);
@@ -50,6 +39,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         return null;
     }
 
+    public abstract Authentication getAuthentication(HttpServletRequest request);
+
     @Override
     protected void successfulAuthentication(HttpServletRequest request,
                                             HttpServletResponse response,
@@ -58,8 +49,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         UserDetailsImpl userDetails = (UserDetailsImpl) authResult.getPrincipal();
         String email = userDetails.getUsername();
         String name = userDetails.getName();
-        String token = "Bearer "+ TokenUtils.createToken(name,email);
-        LoginResponse loginResponse = new LoginResponse(token,email,name);
+        String token = "Bearer " + TokenUtils.createToken(name, email);
+        LoginResponse loginResponse = new LoginResponse(token, email, name);
         response.setContentType("Application/json");
         PrintWriter writer = response.getWriter();
         writer.write((new Gson()).toJson(loginResponse));

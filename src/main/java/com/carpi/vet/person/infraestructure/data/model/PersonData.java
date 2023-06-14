@@ -18,15 +18,15 @@ public class PersonData {
     @JoinColumn(name = "user_id")
     private UserData user;
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name="id_type",nullable = false)
+    @JoinColumn(name="id_type")
     private IdentificationTypeData identificationType;
-    @Column(name = "identification_person", length = 15, nullable = false, unique = true)
+    @Column(name = "identification_person", length = 15, unique = true)
     private String identification;
-    @Column(name = "name_person", length = 150, nullable = false)
+    @Column(name = "name_person", length = 40, nullable = false)
     private String name;
-    @Column(name = "last_name_person", length = 150, nullable = false)
+    @Column(name = "last_name_person", length = 40, nullable = false)
     private String lastName;
-    @Column(name = "address_person", length = 150)
+    @Column(name = "address_person", length = 90)
     private String address;
     @Column(name = "phone_person", length = 20)
     private String phone;
